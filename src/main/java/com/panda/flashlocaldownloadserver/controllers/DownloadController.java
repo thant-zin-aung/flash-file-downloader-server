@@ -111,7 +111,7 @@ public class DownloadController {
 
     @FXML
     public void clickOnCancelBtn() {
-        StageSwitcher.getCurrentStage().show();
+        StageSwitcher.getCurrentStage().close();
         multiThreadedDownloader.stopDownload();
     }
 }

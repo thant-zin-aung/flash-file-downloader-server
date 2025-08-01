@@ -49,11 +49,15 @@ public class YtDlpFormatFetcherJson {
 
         ProcessBuilder pb = new ProcessBuilder(
                 YtDlpManager.getYtDlpPath(),
-                "--no-warnings",
                 "-J",
+                "--no-warnings",
+                "--no-playlist",
+                "--skip-unavailable-fragments",
+                "--force-ipv4",
+                "-f", "bv*+ba/b",
                 videoUrl
         );
-        pb.redirectErrorStream(true);
+//        pb.redirectErrorStream(true);
 
         Process process = pb.start();
 
@@ -72,6 +76,7 @@ public class YtDlpFormatFetcherJson {
                 return Collections.emptyList();
             }
         } catch (InterruptedException e) {
+            e.printStackTrace();
             Thread.currentThread().interrupt();
             return Collections.emptyList();
         }
