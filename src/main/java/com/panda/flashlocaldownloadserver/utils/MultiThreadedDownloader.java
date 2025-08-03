@@ -21,6 +21,7 @@ public class MultiThreadedDownloader {
     public static ObservableValue<Double> progressPercentObserver = new ObservableValue<>();
     public static ObservableValue<String> connectionSpeedObserver = new ObservableValue<>();
     public static ObservableValue<String> etaObserver = new ObservableValue<>();
+    public static ObservableValue<Boolean> downloadFinishStatusObserver = new ObservableValue<>();
 
     private Map<String, String> headers;
 
@@ -37,6 +38,7 @@ public class MultiThreadedDownloader {
     }
     public void downloadFile(String fileURL, String outputDir) throws Exception {
         isDownloadStop = false;
+        downloadFinishStatusObserver.setValue(false);
         URL url = new URL(fileURL);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 //        conn.setRequestMethod("HEAD");
@@ -67,6 +69,8 @@ public class MultiThreadedDownloader {
             System.out.println("Server doesn't support multi-threading or unknown file size. Downloading single-threaded: " + fileName);
             downloadUnknownLength(fileURL, outputFile);
             System.out.println("\nDownload complete: " + outputFile.getAbsolutePath());
+            progressPercentObserver.setValue(100d);
+            downloadFinishStatusObserver.setValue(true);
             return;
         }
 
@@ -163,6 +167,8 @@ public class MultiThreadedDownloader {
             System.out.println("\nMerging parts...");
             mergeParts(outputDir, fileName, outputFile);
             System.out.println("Download complete: " + outputFile.getAbsolutePath());
+            progressPercentObserver.setValue(100d);
+            downloadFinishStatusObserver.setValue(true);
         }
     }
 

@@ -46,9 +46,9 @@ public class YtDlpFormatFetcherJson {
 
     private static List<Format> fetchFormats(String videoUrl) throws IOException {
         videoUrl = videoUrl.split("&")[0];
-
         ProcessBuilder pb = new ProcessBuilder(
                 YtDlpManager.getYtDlpPath(),
+                "--ffmpeg-location", YtDlpManager.getFfmpegPath(),
                 "-J",
                 "--no-warnings",
                 "--no-playlist",

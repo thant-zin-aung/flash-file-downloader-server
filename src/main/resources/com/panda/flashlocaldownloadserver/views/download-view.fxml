@@ -59,6 +59,21 @@
          </children>
       </HBox>
       <Button fx:id="cancelButton" layoutX="425.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#clickOnCancelBtn" styleClass="cancel-button" text="Cancel" />
-      <Button fx:id="pauseButton" layoutX="317.0" layoutY="164.0" mnemonicParsing="false" styleClass="pause-button" text="Pause" visible="false" />
+      <Button fx:id="finishButton" layoutX="317.0" layoutY="164.0" mnemonicParsing="false" onMouseClicked="#clickOnCancelBtn" styleClass="pause-button" text="Finished" visible="false" />
+      <ImageView fx:id="minimizeButton" fitHeight="20.0" fitWidth="17.0" layoutX="515.0" layoutY="14.0" onMouseClicked="#onClickMinimizeBtn" onMouseEntered="#hoverOnMinimizeBtn" onMouseExited="#hoverOffMinimizeBtn" opacity="0.4" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/minimize.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="35.0" layoutY="176.0" text="Download size: " textFill="#a9a9a9">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="fileSize" layoutX="105.0" layoutY="175.0" textFill="#437efb">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

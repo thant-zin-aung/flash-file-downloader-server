@@ -60,6 +60,7 @@ public class LocalDownloadServer {
     private static void handleFormatRequest(HttpExchange exchange) throws IOException {
         System.out.println("Youtube formats requested...");
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+            System.out.println("Options");
             addCorsHeaders(exchange);
             exchange.sendResponseHeaders(204, -1);
             exchange.close();
@@ -67,13 +68,13 @@ public class LocalDownloadServer {
         }
 
         if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            System.out.println("Not get method");
             addCorsHeaders(exchange);
             exchange.sendResponseHeaders(405, -1); // Method Not Allowed
             return;
         }
 
         addCorsHeaders(exchange);
-
         // Get the `url` parameter from query
         URI requestURI = exchange.getRequestURI();
         String query = requestURI.getQuery(); // url=https://youtube.com/watch?v=xxx
