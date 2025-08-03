@@ -6,11 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class UIUtility {
     public static void makeStageDraggable(Stage stage, Node dragNode) {
@@ -38,6 +40,7 @@ public class UIUtility {
         downloadStage.setAlwaysOnTop(true);
         downloadStage.setScene(scene);
         downloadStage.initStyle(StageStyle.TRANSPARENT);
+        downloadStage.getIcons().add(new Image(Objects.requireNonNull(MainApplication.class.getResourceAsStream("/com/panda/flashlocaldownloadserver/assets/img/app-logo.png"))));
         UIUtility.makeStageDraggable(downloadStage, root);
         StageSwitcher.addNewStage(StageSwitcher.Stages.DOWNLOAD_STAGE, downloadStage);
         return controller;
